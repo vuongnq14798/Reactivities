@@ -1,9 +1,7 @@
 using System;
 
-namespace API
-{
-    public class WeatherForecast
-    {
+namespace API {
+    public class WeatherForecast {
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }

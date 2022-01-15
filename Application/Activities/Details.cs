@@ -4,27 +4,23 @@ using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Persistence;
+using Application.Core;
 
-namespace Application.Activities
-{
-    public class Details
-    {
-        public class Query : IRequest<Activity> {
+namespace Application.Activities {
+    public class Details {
+        public class Query : IRequest<Result<Activity>> {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Activity>
-        {
-            private readonly DataContext context;
+        public class Handler : IRequestHandler<Query, Result<Activity>> {
+            private readonly DataContext _context;
 
-            public Handler(DataContext context)
-            {
-                this.context = context;
+            public Handler(DataContext context) {
+                _context = context;
             }
 
-            public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
-            {
-                return await this.context.Activities.FindAsync(request.Id);
+            public async Task<Result<Activity>> Handle(Query request, CancellationToken cancellationToken) {
+                return Result<Activity>.Success(await _context.Activities.FindAsync(request.Id));
             }
         }
     }
