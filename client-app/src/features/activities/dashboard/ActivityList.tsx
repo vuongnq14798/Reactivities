@@ -10,7 +10,6 @@ export default observer(function ActivityList() {
 
     return (
         <>
-            {console.log(groupedActivities)}
             {groupedActivities.map(([group, activities]) => (
                 <Fragment key={group}>
                     <Header sub color="teal">
