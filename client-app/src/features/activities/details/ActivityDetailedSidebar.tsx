@@ -8,7 +8,7 @@ interface Props {
     activity: Activity
 }
 
-export default observer(function ActivityDetailedSidebar({ activity : {attendees, host} }: Props) {
+export default observer(function ActivityDetailedSidebar({ activity: { attendees, host } }: Props) {
     if (!attendees) return null;
     return (
         <>
@@ -30,9 +30,9 @@ export default observer(function ActivityDetailedSidebar({ activity : {attendees
                             <Image size='tiny' src={e.image || '/assets/user.png'} />
                             <Item.Content verticalAlign='middle'>
                                 <Item.Header as='h3'>
-                                    <Link to={`/profile/${e.username}`}>{e.displayName}</Link>
+                                    <Link to={`/profiles/${e.username}`}>{e.displayName}</Link>
                                 </Item.Header>
-                                <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
+                                {e.following && <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>}
                             </Item.Content>
                         </Item>
                     ))}
