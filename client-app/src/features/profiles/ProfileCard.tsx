@@ -1,5 +1,8 @@
+import { truncate } from "fs";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, Icon, Image } from "semantic-ui-react";
+import { StringSchema } from "yup";
+import { string } from "yup/lib/locale";
 import { Profile } from "../../app/models/profile";
 import FollowButton from "./FollowButton";
 
@@ -8,12 +11,18 @@ interface Props {
 }
 
 export default function ProfileCard({profile} : Props) {
+    function truncate(str: string | undefined) {
+        if (str) {
+            return str.length > 40 ? str.substring(0, 37) + '...' : str;
+        }
+    }
+
     return (
         <Card as={Link} to={`/profiles/${profile.username}`}>
             <Image src={profile.image || '/assets/user.png'} />
             <CardContent>
                 <CardHeader>{profile.displayName}</CardHeader>
-                <CardDescription>Bio goes here</CardDescription>
+                <CardDescription>{truncate(profile.bio)}</CardDescription>
             </CardContent>
             <CardContent extra >
                 <Icon name="user" />
