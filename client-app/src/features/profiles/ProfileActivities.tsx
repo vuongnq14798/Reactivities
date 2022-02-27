@@ -17,14 +17,14 @@ export default observer(function ProfileActivities() {
 
     useEffect(() => {
         loadUserActivities(profile!.username);   
-    }, [loadingActivities, profile]);
+    }, [loadUserActivities, profile]);
 
     const handleTabChange = (e: SyntheticEvent, data: TabProps) => {
         loadUserActivities(profile!.username, panes[data.activeIndex as number].pane.key);
     }
 
     return (
-        <Tab.Pane>
+        <Tab.Pane loading={loadingActivities}>
             <Grid>
                 <Grid.Column width={16}>
                     <Header floated="left" icon='calendar' content={'Activities'} />
@@ -36,13 +36,13 @@ export default observer(function ProfileActivities() {
                         onTabChange={(e, data) => handleTabChange(e, data)}
                     />
                     <br />
-                    <Card.Group>
+                    <Card.Group itemsPerRow={4}>
                         {userActivities.map((activity: UserActivity) => (
                             <Card as={Link} to={`/activities/${activity.id}`} key={activity.id}>
                                 <Image src={`/assets/categoryImages/${activity.category}.jpg`} style={{minHeight: 100, objectFit: 'cover'}}/>
                                 <Card.Content>
                                     <Card.Header textAlign="center">{activity.title}</Card.Header>
-                                    <Card.Meta>
+                                    <Card.Meta textAlign="center">
                                         <div>{ format(new Date(activity.date), 'do LLL') }</div>
                                         <div>{ format(new Date(activity.date), 'h:mm a') }</div>
                                     </Card.Meta>

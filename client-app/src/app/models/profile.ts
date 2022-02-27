@@ -1,4 +1,3 @@
-import { Tracing } from "trace_events";
 import { User } from "./user";
 
 export interface Profile {

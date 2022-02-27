@@ -1,8 +1,5 @@
-import { truncate } from "fs";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, Icon, Image } from "semantic-ui-react";
-import { StringSchema } from "yup";
-import { string } from "yup/lib/locale";
 import { Profile } from "../../app/models/profile";
 import FollowButton from "./FollowButton";
 

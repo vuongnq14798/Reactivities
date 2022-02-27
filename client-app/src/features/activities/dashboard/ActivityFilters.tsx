@@ -8,7 +8,7 @@ export default observer(function ActivityFilters() {
 
     return (
         <>
-            <Menu vertical size="large" style={{ width: '100%', marginTop: 25 }}>
+            <Menu vertical size="large" style={{ width: '100%', marginTop: 28, paddingTop: 3}}>
                 <Header icon='filter' attached color="teal" content='Filters' />
                 <Menu.Item
                     content='All Activities'
